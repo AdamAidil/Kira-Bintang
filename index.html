@@ -1,26 +1,160 @@
-function kiraBintang() {
-  const inputGabung = document.getElementById("gabung").value.trim();
-  const panjang = inputGabung.length;
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Mengetahui Bintangnya Seseorang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 5vw;
+      background-color: #f5f5f5;
+      font-size: 4.5vw;
+      color: #2d3436;
+    }
 
-  if (panjang < 2) {
-    document.getElementById("keputusan").innerHTML = `<p>Sila masukkan nama anda dan nama ibu (digabung tanpa ruang).</p>`;
-    return;
-  }
+    h1 {
+      font-size: 6vw;
+      color: #2c3e50;
+      margin-bottom: 4vw;
+    }
 
-  const tengah = Math.floor(panjang / 2);
-  const nama = inputGabung.slice(0, tengah);
-  const ibu = inputGabung.slice(tengah);
+    p {
+      margin: 4vw 0 2vw;
+    }
 
-  const jumlah = kiraNilai(nama) + kiraNilai(ibu);
-  let baki = jumlah % 12;
-  baki = baki === 0 ? 12 : baki;
+    input {
+      padding: 3vw;
+      font-size: 4.5vw;
+      margin-bottom: 4vw;
+      width: 90%;
+      max-width: 400px;
+      text-align: left;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-  const keputusan = bintang[baki];
-  document.getElementById("keputusan").innerHTML = `
-    <p><strong>Nama:</strong> ${nama}</p>
-    <p><strong>Nama Ibu:</strong> ${ibu}</p>
-    <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
-    <p><strong>Baki:</strong> ${baki}</p>
-    <p><strong>${keputusan}</strong></p>
-  `;
-}
+    button {
+      padding: 3vw 6vw;
+      font-size: 4.5vw;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 2vw;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .result {
+      margin-top: 6vw;
+      font-size: 4.5vw;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 4vw;
+      width: 90%;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media(min-width: 768px) {
+      body {
+        font-size: 1.2em;
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      input, button {
+        font-size: 1.2em;
+        padding: 10px;
+      }
+
+      .result {
+        font-size: 1.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Untuk Mengetahui Bintangnya Seseorang</h1>
+  <div style="font-size: 6vw; margin-bottom: 5vw;">
+    🐑🐂👭🦀🦁👱🏻‍♀️⚖🦂🏹🐐⚱🐟
+  </div>
+  <p>Masukkan Nama Anda & Ibu (tulisan Arab/Jawi):</p>
+  <input type="text" id="gabung" placeholder="contoh: احمدفاطمه"><br>
+  <button onclick="kiraBintang()">Kira Bintang</button>
+
+  <div class="result" id="keputusan"></div>
+
+  <script>
+    const nilaiHuruf = {
+      'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7,
+      'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50,
+      'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200,
+      'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800,
+      'ظ': 900, 'غ': 1000
+    };
+
+    const bintang = {
+      1: "Bintang Hamal حمل (Aries) 🐑, di atasnya bintang Mars. Watak — tabiatnya api.",
+      2: "Bintang Tsur ثور (Taurus) 🐂, di atasnya bintang Zuhroh. Watak — tabiatnya tanah.",
+      3: "Bintang Jauza جوزاء (Gemini) 👭, di atasnya bintang Utharid. Watak — tabiatnya angin.",
+      4: "Bintang Sarthon سرطان (Cancer) 🦀, di atasnya bintang Zomar. Watak — tabiatnya air.",
+      5: "Bintang Asad اسد (Leo) 🦁, di atasnya bintang Syams. Watak — tabiatnya api.",
+      6: "Bintang Sunbulah سنبله (Virgo) 👱🏻‍♀, di atasnya bintang Utharid. Watak — tabiatnya tanah.",
+      7: "Bintang Mizan ميزان (Libra) ⚖, di atasnya bintang Zuhroh. Watak — tabiatnya angin.",
+      8: "Bintang Aqrab عقراب (Scorpio) 🦂, di atasnya bintang Mars. Watak — tabiatnya air.",
+      9: "Bintang Qaws قوس (Sagittarius) 🏹, di atasnya bintang Mustari. Watak — tabiatnya api.",
+      10: "Bintang Judi جدي (Capricorn) 🐐, di atasnya bintang Zuhal. Watak — tabiatnya tanah.",
+      11: "Bintang Daly دلو (Aquarius) ⚱, di atasnya bintang Zuhal. Watak — tabiatnya angin.",
+      12: "Bintang Hut حوت (Pisces) 🐟, di atasnya bintang Mustari. Watak — tabiatnya air."
+    };
+
+    function kiraNilai(nama) {
+      let jumlah = 0;
+      for (let huruf of nama) {
+        if (nilaiHuruf[huruf]) {
+          jumlah += nilaiHuruf[huruf];
+        }
+      }
+      return jumlah;
+    }
+
+    function kiraBintang() {
+      const gabung = document.getElementById("gabung").value.trim();
+      const panjang = gabung.length;
+
+      if (panjang < 2) {
+        document.getElementById("keputusan").innerHTML = `<p>Sila masukkan nama anda dan ibu.</p>`;
+        return;
+      }
+
+      const tengah = Math.floor(panjang / 2);
+      const nama = gabung.slice(0, tengah);
+      const ibu = gabung.slice(tengah);
+
+      const jumlah = kiraNilai(nama) + kiraNilai(ibu);
+      let baki = jumlah % 12;
+      baki = baki === 0 ? 12 : baki;
+
+      const keputusan = bintang[baki];
+      document.getElementById("keputusan").innerHTML = `
+        <p><strong>Nama:</strong> ${nama}</p>
+        <p><strong>Nama Ibu:</strong> ${ibu}</p>
+        <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
+        <p><strong>Baki:</strong> ${baki}</p>
+        <p><strong>${keputusan}</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
