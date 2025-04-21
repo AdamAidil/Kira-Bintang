@@ -96,65 +96,63 @@
   <div class="result" id="keputusan"></div>
 
   <script>
-    const nilaiHuruf = {
-      'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7,
-      'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50,
-      'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200,
-      'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800,
-      'ظ': 900, 'غ': 1000
-    };
+  const nilaiHuruf = {
+    'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7,
+    'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50,
+    'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200,
+    'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800,
+    'ظ': 900, 'غ': 1000
+  };
 
-    const bintang = {
-      1: "Bintang Hamal حمل (Aries) 🐑, di atasnya bintang Mars. Watak — tabiatnya api.",
-      2: "Bintang Tsur ثور (Taurus) 🐂, di atasnya bintang Zuhroh. Watak — tabiatnya tanah.",
-      3: "Bintang Jauza جوزاء (Gemini) 👭, di atasnya bintang Utharid. Watak — tabiatnya angin.",
-      4: "Bintang Sarthon سرطان (Cancer) 🦀, di atasnya bintang Zomar. Watak — tabiatnya air.",
-      5: "Bintang Asad اسد (Leo) 🦁, di atasnya bintang Syams. Watak — tabiatnya api.",
-      6: "Bintang Sunbulah سنبله (Virgo) 👱🏻‍♀, di atasnya bintang Utharid. Watak — tabiatnya tanah.",
-      7: "Bintang Mizan ميزان (Libra) ⚖, di atasnya bintang Zuhroh. Watak — tabiatnya angin.",
-      8: "Bintang Aqrab عقراب (Scorpio) 🦂, di atasnya bintang Mars. Watak — tabiatnya air.",
-      9: "Bintang Qaws قوس (Sagittarius) 🏹, di atasnya bintang Mustari. Watak — tabiatnya api.",
-      10: "Bintang Judi جدي (Capricorn) 🐐, di atasnya bintang Zuhal. Watak — tabiatnya tanah.",
-      11: "Bintang Daly دلو (Aquarius) ⚱, di atasnya bintang Zuhal. Watak — tabiatnya angin.",
-      12: "Bintang Hut حوت (Pisces) 🐟, di atasnya bintang Mustari. Watak — tabiatnya air."
-    };
+  const bintang = {
+    1: "Bintang Hamal حمل (Aries) 🐑, di atasnya bintang Mars. Watak — tabiatnya api.",
+    2: "Bintang Tsur ثور (Taurus) 🐂, di atasnya bintang Zuhroh. Watak — tabiatnya tanah.",
+    3: "Bintang Jauza جوزاء (Gemini) 👭, di atasnya bintang Utharid. Watak — tabiatnya angin.",
+    4: "Bintang Sarthon سرطان (Cancer) 🦀, di atasnya bintang Zomar. Watak — tabiatnya air.",
+    5: "Bintang Asad اسد (Leo) 🦁, di atasnya bintang Syams. Watak — tabiatnya api.",
+    6: "Bintang Sunbulah سنبله (Virgo) 👱🏻‍♀, di atasnya bintang Utharid. Watak — tabiatnya tanah.",
+    7: "Bintang Mizan ميزان (Libra) ⚖, di atasnya bintang Zuhroh. Watak — tabiatnya angin.",
+    8: "Bintang Aqrab عقراب (Scorpio) 🦂, di atasnya bintang Mars. Watak — tabiatnya air.",
+    9: "Bintang Qaws قوس (Sagittarius) 🏹, di atasnya bintang Mustari. Watak — tabiatnya api.",
+    10: "Bintang Judi جدي (Capricorn) 🐐, di atasnya bintang Zuhal. Watak — tabiatnya tanah.",
+    11: "Bintang Daly دلو (Aquarius) ⚱, di atasnya bintang Zuhal. Watak — tabiatnya angin.",
+    12: "Bintang Hut حوت (Pisces) 🐟, di atasnya bintang Mustari. Watak — tabiatnya air."
+  };
 
-    function kiraNilai(nama) {
-      let jumlah = 0;
-      for (let huruf of nama) {
-        if (nilaiHuruf[huruf]) {
-          jumlah += nilaiHuruf[huruf];
-        }
+  function kiraNilai(nama) {
+    let jumlah = 0;
+    for (let huruf of nama) {
+      if (nilaiHuruf[huruf]) {
+        jumlah += nilaiHuruf[huruf];
       }
-      return jumlah;
+    }
+    return jumlah;
+  }
+
+  function kiraBintang() {
+    const gabung = document.getElementById("gabung").value.trim();
+    const panjang = gabung.length;
+
+    if (panjang < 2) {
+      document.getElementById("keputusan").innerHTML = `<p>Sila masukkan nama anda dan ibu.</p>`;
+      return;
     }
 
-    function kiraBintang() {
-      const gabung = document.getElementById("gabung").value.trim();
-      const panjang = gabung.length;
+    const tengah = Math.floor(panjang / 2);
+    const nama = gabung.slice(0, tengah);
+    const ibu = gabung.slice(tengah);
 
-      if (panjang < 2) {
-        document.getElementById("keputusan").innerHTML = `<p>Sila masukkan nama anda dan ibu.</p>`;
-        return;
-      }
+    const jumlah = kiraNilai(nama) + kiraNilai(ibu);
+    let baki = jumlah % 12;
+    baki = baki === 0 ? 12 : baki;
 
-      const tengah = Math.floor(panjang / 2);
-      const nama = gabung.slice(0, tengah);
-      const ibu = gabung.slice(tengah);
-
-      const jumlah = kiraNilai(nama) + kiraNilai(ibu);
-      let baki = jumlah % 12;
-      baki = baki === 0 ? 12 : baki;
-
-      const keputusan = bintang[baki];
-      document.getElementById("keputusan").innerHTML = `
-        <p><strong>Nama:</strong> ${nama}</p>
-        <p><strong>Nama Ibu:</strong> ${ibu}</p>
-        <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
-        <p><strong>Baki:</strong> ${baki}</p>
-        <p><strong>${keputusan}</strong></p>
-      `;
-    }
-  </script>
+    const keputusan = bintang[baki];
+    document.getElementById("keputusan").innerHTML = `
+      <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
+      <p><strong>Baki:</strong> ${baki}</p>
+      <p><strong>${keputusan}</strong></p>
+    `;
+  }
+</script>
 </body>
 </html>
