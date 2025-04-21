@@ -3,36 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <title>Untuk Mengetahui Bintangnya Seseorang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding: 30px;
+      padding: 5vw;
       background-color: #f5f5f5;
+      font-size: 4.5vw;
+      color: #2d3436;
     }
+
     h1 {
+      font-size: 6vw;
       color: #2c3e50;
+      margin-bottom: 4vw;
     }
+
+    p {
+      margin: 4vw 0 2vw;
+    }
+
     input {
-      padding: 10px;
-      font-size: 18px;
-      margin: 10px;
-      width: 300px;
+      padding: 3vw;
+      font-size: 4.5vw;
+      margin-bottom: 4vw;
+      width: 90%;
+      max-width: 400px;
       text-align: right;
+      border: 1px solid #ccc;
+      border-radius: 8px;
     }
+
     button {
-      padding: 10px 20px;
-      font-size: 18px;
+      padding: 3vw 6vw;
+      font-size: 4.5vw;
       cursor: pointer;
       background-color: #3498db;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      margin-top: 2vw;
     }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
     .result {
-      margin-top: 20px;
-      font-size: 20px;
-      color: #2d3436;
+      margin-top: 6vw;
+      font-size: 4.5vw;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 4vw;
+      width: 90%;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media(min-width: 768px) {
+      body {
+        font-size: 1.2em;
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      input, button {
+        font-size: 1.2em;
+        padding: 10px;
+      }
+
+      .result {
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
@@ -56,18 +104,18 @@
     };
 
     const bintang = {
-      1: "Bintang Hamal, diatasnya bintang Mars. Watak — tabiatnya api.",
-      2: "Bintang Tsur, diatasnya bintang Zuhroh. Watak — tabiatnya tanah.",
-      3: "Bintang Jauza, diatasnya bintang Utharid. Watak — tabiatnya angin.",
-      4: "Bintang Syarothon, diatasnya bintang ’zomar. Watak — tabiatnya air.",
-      5: "Bintang Asad, diatasnya bintang Syams. Watak — tabiatnya api.",
-      6: "Bintang Simbulah, diatasnya bintang Utharid. Watak — tabiatnya tanah.",
-      7: "Bintang Mizan, diatasnya bintang Zuhroh. Watak — tabiatnya angin.",
-      8: "Bintang Aqrab, diatasnya bintang Mars. Watak — tabiatnya air.",
-      9: "Bintang Qaus, diatasnya bintang Mustari. Watak — tabiatnya api.",
-      10: "Bintang Yudi, diatasnya bintang Zuhal. Watak — tabiatnya tanah.",
-      11: "Bintang Daly, diatasnya bintang Zuhal. Watak — tabiatnya angin.",
-      12: "Bintang Hut, diatasnya bintang Mustari. Watak — tabiatnya air."
+      1: "Bintang Hamal, di atasnya bintang Mars. Watak — tabiatnya api.",
+      2: "Bintang Tsur, di atasnya bintang Zuhroh. Watak — tabiatnya tanah.",
+      3: "Bintang Jauza, di atasnya bintang Utharid. Watak — tabiatnya angin.",
+      4: "Bintang Syarothon, di atasnya bintang Zomar. Watak — tabiatnya air.",
+      5: "Bintang Asad, di atasnya bintang Syams. Watak — tabiatnya api.",
+      6: "Bintang Simbulah, di atasnya bintang Utharid. Watak — tabiatnya tanah.",
+      7: "Bintang Mizan, di atasnya bintang Zuhroh. Watak — tabiatnya angin.",
+      8: "Bintang Aqrab, di atasnya bintang Mars. Watak — tabiatnya air.",
+      9: "Bintang Qaus, di atasnya bintang Mustari. Watak — tabiatnya api.",
+      10: "Bintang Yudi, di atasnya bintang Zuhal. Watak — tabiatnya tanah.",
+      11: "Bintang Daly, di atasnya bintang Zuhal. Watak — tabiatnya angin.",
+      12: "Bintang Hut, di atasnya bintang Mustari. Watak — tabiatnya air."
     };
 
     function kiraNilai(nama) {
@@ -90,8 +138,8 @@
 
       const keputusan = bintang[baki];
       document.getElementById("keputusan").innerHTML = `
-        <p>Jumlah Nilai: ${jumlah}</p>
-        <p>Baki: ${baki}</p>
+        <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
+        <p><strong>Baki:</strong> ${baki}</p>
         <p><strong>${keputusan}</strong></p>
       `;
     }
