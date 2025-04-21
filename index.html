@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Mengetahui Bintangnya Seseorang</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      margin: 10px;
+      width: 300px;
+      text-align: right;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #2d3436;
+    }
+  </style>
+</head>
+<body>
+  <h1>Untuk Mengetahui Bintangnya Seseorang</h1>
+  <p>Masukkan Nama Anda (dalam Arab/Jawi):</p>
+  <input type="text" id="nama" placeholder="contoh: احمد"><br>
+  <p>Masukkan Nama Ibu (dalam Arab/Jawi):</p>
+  <input type="text" id="ibu" placeholder="contoh: فاطمه"><br>
+  <button onclick="kiraBintang()">Kira Bintang</button>
+
+  <div class="result" id="keputusan"></div>
+
+  <script>
+    const nilaiHuruf = {
+      'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7,
+      'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50,
+      'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200,
+      'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800,
+      'ظ': 900, 'غ': 1000
+    };
+
+    const bintang = {
+      1: "Bintang Hamal, diatasnya bintang Mars. Watak — tabiatnya api.",
+      2: "Bintang Tsur, diatasnya bintang Zuhroh. Watak — tabiatnya tanah.",
+      3: "Bintang Jauza, diatasnya bintang Utharid. Watak — tabiatnya angin.",
+      4: "Bintang Syarothon, diatasnya bintang ’zomar. Watak — tabiatnya air.",
+      5: "Bintang Asad, diatasnya bintang Syams. Watak — tabiatnya api.",
+      6: "Bintang Simbulah, diatasnya bintang Utharid. Watak — tabiatnya tanah.",
+      7: "Bintang Mizan, diatasnya bintang Zuhroh. Watak — tabiatnya angin.",
+      8: "Bintang Aqrab, diatasnya bintang Mars. Watak — tabiatnya air.",
+      9: "Bintang Qaus, diatasnya bintang Mustari. Watak — tabiatnya api.",
+      10: "Bintang Yudi, diatasnya bintang Zuhal. Watak — tabiatnya tanah.",
+      11: "Bintang Daly, diatasnya bintang Zuhal. Watak — tabiatnya angin.",
+      12: "Bintang Hut, diatasnya bintang Mustari. Watak — tabiatnya air."
+    };
+
+    function kiraNilai(nama) {
+      let jumlah = 0;
+      for (let huruf of nama) {
+        if (nilaiHuruf[huruf]) {
+          jumlah += nilaiHuruf[huruf];
+        }
+      }
+      return jumlah;
+    }
+
+    function kiraBintang() {
+      const nama = document.getElementById("nama").value.trim();
+      const ibu = document.getElementById("ibu").value.trim();
+      const jumlah = kiraNilai(nama) + kiraNilai(ibu);
+
+      let baki = jumlah % 12;
+      baki = baki === 0 ? 12 : baki;
+
+      const keputusan = bintang[baki];
+      document.getElementById("keputusan").innerHTML = `
+        <p>Jumlah Nilai: ${jumlah}</p>
+        <p>Baki: ${baki}</p>
+        <p><strong>${keputusan}</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
