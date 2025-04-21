@@ -90,69 +90,135 @@
     🐑🐂👭🦀🦁👱🏻‍♀️⚖🦂🏹🐐⚱🐟
   </div>
   <p>Masukkan Nama Anda & Ibu (tulisan Arab/Jawi):</p>
-  <input type="text" id="gabung" placeholder="contoh: احمد فاطمه (tanpa bin/binti)"><br>
+  <input type="text" id="gabung" placeholder="contoh: احمدفاطمه"><br>
   <button onclick="kiraBintang()">Kira Bintang</button>
 
   <div class="result" id="keputusan"></div>
+  <div class="result" id="unsur"></div>
 
   <script>
-  const nilaiHuruf = {
-    'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7,
-    'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50,
-    'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200,
-    'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800,
-    'ظ': 900, 'غ': 1000
-  };
+    const nilaiHuruf = {
+      'ا': 1, 'ب': 2, 'ج': 3, 'د': 4, 'ه': 5, 'و': 6, 'ز': 7,
+      'ح': 8, 'ط': 9, 'ي': 10, 'ك': 20, 'ل': 30, 'م': 40, 'ن': 50,
+      'س': 60, 'ع': 70, 'ف': 80, 'ص': 90, 'ق': 100, 'ر': 200,
+      'ش': 300, 'ت': 400, 'ث': 500, 'خ': 600, 'ذ': 700, 'ض': 800,
+      'ظ': 900, 'غ': 1000
+    };
 
-  const bintang = {
-    1: "Bintang Hamal حمل (Aries) 🐑, di atasnya bintang Mars. Watak — tabiatnya api.",
-    2: "Bintang Tsur ثور (Taurus) 🐂, di atasnya bintang Zuhroh. Watak — tabiatnya tanah.",
-    3: "Bintang Jauza جوزاء (Gemini) 👭, di atasnya bintang Utharid. Watak — tabiatnya angin.",
-    4: "Bintang Sarthon سرطان (Cancer) 🦀, di atasnya bintang Zomar. Watak — tabiatnya air.",
-    5: "Bintang Asad اسد (Leo) 🦁, di atasnya bintang Syams. Watak — tabiatnya api.",
-    6: "Bintang Sunbulah سنبله (Virgo) 👱🏻‍♀, di atasnya bintang Utharid. Watak — tabiatnya tanah.",
-    7: "Bintang Mizan ميزان (Libra) ⚖, di atasnya bintang Zuhroh. Watak — tabiatnya angin.",
-    8: "Bintang Aqrab عقراب (Scorpio) 🦂, di atasnya bintang Mars. Watak — tabiatnya air.",
-    9: "Bintang Qaws قوس (Sagittarius) 🏹, di atasnya bintang Mustari. Watak — tabiatnya api.",
-    10: "Bintang Judi جدي (Capricorn) 🐐, di atasnya bintang Zuhal. Watak — tabiatnya tanah.",
-    11: "Bintang Daly دلو (Aquarius) ⚱, di atasnya bintang Zuhal. Watak — tabiatnya angin.",
-    12: "Bintang Hut حوت (Pisces) 🐟, di atasnya bintang Mustari. Watak — tabiatnya air."
-  };
+    const bintang = {
+      1: "Bintang Hamal حمل (Aries) 🐑, di atasnya bintang Mars. Watak — tabiatnya api.",
+      2: "Bintang Tsur ثور (Taurus) 🐂, di atasnya bintang Zuhroh. Watak — tabiatnya tanah.",
+      3: "Bintang Jauza جوزاء (Gemini) 👭, di atasnya bintang Utharid. Watak — tabiatnya angin.",
+      4: "Bintang Sarthon سرطان (Cancer) 🦀, di atasnya bintang Zomar. Watak — tabiatnya air.",
+      5: "Bintang Asad اسد (Leo) 🦁, di atasnya bintang Syams. Watak — tabiatnya api.",
+      6: "Bintang Sunbulah سنبله (Virgo) 👱🏻‍♀, di atasnya bintang Utharid. Watak — tabiatnya tanah.",
+      7: "Bintang Mizan ميزان (Libra) ⚖, di atasnya bintang Zuhroh. Watak — tabiatnya angin.",
+      8: "Bintang Aqrab عقراب (Scorpio) 🦂, di atasnya bintang Mars. Watak — tabiatnya air.",
+      9: "Bintang Qaws قوس (Sagittarius) 🏹, di atasnya bintang Mustari. Watak — tabiatnya api.",
+      10: "Bintang Judi جدي (Capricorn) 🐐, di atasnya bintang Zuhal. Watak — tabiatnya tanah.",
+      11: "Bintang Daly دلو (Aquarius) ⚱, di atasnya bintang Zuhal. Watak — tabiatnya angin.",
+      12: "Bintang Hut حوت (Pisces) 🐟, di atasnya bintang Mustari. Watak — tabiatnya air."
+    };
 
-  function kiraNilai(nama) {
-    let jumlah = 0;
-    for (let huruf of nama) {
-      if (nilaiHuruf[huruf]) {
-        jumlah += nilaiHuruf[huruf];
+    const unsur = {
+      tanah: `
+        <p><strong>Unsur Tanah:</strong></p>
+        <ul style="text-align:left;">
+          <li>pendiam</li>
+          <li>pendengar yang baik</li>
+          <li>penyabar & setia</li>
+          <li>tak mudah membangkang</li>
+          <li>dengar kata dan boleh bawa bincang</li>
+          <li>berperwatakan manis</li>
+          <li>lembut hati</li>
+          <li>suka memendam rasa dan sensitif</li>
+          <li>tak banyak karenah</li>
+          <li>tak cerewet</li>
+          <li>menghormati orang lain</li>
+          <li>rendah diri dan tak sombong</li>
+          <li>tak suka pendam rasa marah sampai tahap boleh meletup</li>
+          <li>lambat dalam menyelesaikan satu tugasan</li>
+        </ul>
+      `,
+      air: `
+        <p><strong>Unsur Air:</strong></p>
+        <ul style="text-align:left;">
+          <li>sentiasa tenang dan menyejukkan perasaan orang lain</li>
+          <li>buat kerja dengan teratur, teliti dan pantas</li>
+          <li>keras kepala, sukar dilentur dan dibentuk</li>
+          <li>manja, lembut hati dan sensitif</li>
+          <li>mood selalu berubah-ubah</li>
+        </ul>
+      `,
+      api: `
+        <p><strong>Unsur Api:</strong></p>
+        <ul style="text-align:left;">
+          <li>semangat yang tinggi, sangat aktif dan berkobar-kobar</li>
+          <li>sangat teliti dan berwaspada</li>
+          <li>suka menyakat dan mengenakan orang lain</li>
+          <li>panas baran dan mudah melukakan hati orang lain</li>
+          <li>kuat cemburu</li>
+          <li>nampak pendiam + sombong tapi baik hati</li>
+        </ul>
+      `,
+      angin: `
+        <p><strong>Unsur Angin:</strong></p>
+        <ul style="text-align:left;">
+          <li>melembutkan hati orang lain</li>
+          <li>agak susah untuk mengendalikan keadaan</li>
+          <li>tidak suka berkongsi masalah kepada orang lain</li>
+          <li>pendiam dan pemalu dengan orang yang tak dikenalinya</li>
+          <li>suka membuat haluan sendiri</li>
+          <li>penyayang</li>
+        </ul>
+      `
+    };
+
+    function kiraNilai(nama) {
+      let jumlah = 0;
+      for (let huruf of nama) {
+        if (nilaiHuruf[huruf]) {
+          jumlah += nilaiHuruf[huruf];
+        }
       }
-    }
-    return jumlah;
-  }
-
-  function kiraBintang() {
-    const gabung = document.getElementById("gabung").value.trim();
-    const panjang = gabung.length;
-
-    if (panjang < 2) {
-      document.getElementById("keputusan").innerHTML = `<p>Sila masukkan nama anda dan ibu.</p>`;
-      return;
+      return jumlah;
     }
 
-    const tengah = Math.floor(panjang / 2);
-    const nama = gabung.slice(0, tengah);
-    const ibu = gabung.slice(tengah);
+    function kiraBintang() {
+      const gabung = document.getElementById("gabung").value.trim();
+      const panjang = gabung.length;
 
-    const jumlah = kiraNilai(nama) + kiraNilai(ibu);
-    let baki = jumlah % 12;
-    baki = baki === 0 ? 12 : baki;
+      if (panjang < 2) {
+        document.getElementById("keputusan").innerHTML = `<p>Sila masukkan nama anda dan ibu.</p>`;
+        document.getElementById("unsur").innerHTML = ``;
+        return;
+      }
 
-    const keputusan = bintang[baki];
-    document.getElementById("keputusan").innerHTML = `
-      <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
-      <p><strong>Baki:</strong> ${baki}</p>
-      <p><strong>${keputusan}</strong></p>
-    `;
-  }
-</script>
+      const tengah = Math.floor(panjang / 2);
+      const nama = gabung.slice(0, tengah);
+      const ibu = gabung.slice(tengah);
+
+      const jumlah = kiraNilai(nama) + kiraNilai(ibu);
+      let baki = jumlah % 12;
+      baki = baki === 0 ? 12 : baki;
+
+      const keputusan = bintang[baki];
+      document.getElementById("keputusan").innerHTML = `
+        <p><strong>Jumlah Nilai:</strong> ${jumlah}</p>
+        <p><strong>Baki:</strong> ${baki}</p>
+        <p><strong>${keputusan}</strong></p>
+      `;
+
+      let teks = keputusan.toLowerCase();
+      let unsurDipilih = "";
+
+      if (teks.includes("tanah")) unsurDipilih = unsur.tanah;
+      else if (teks.includes("air")) unsurDipilih = unsur.air;
+      else if (teks.includes("api")) unsurDipilih = unsur.api;
+      else if (teks.includes("angin")) unsurDipilih = unsur.angin;
+
+      document.getElementById("unsur").innerHTML = unsurDipilih;
+    }
+  </script>
 </body>
 </html>
