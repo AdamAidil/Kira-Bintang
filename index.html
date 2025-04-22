@@ -63,6 +63,20 @@
       margin-right: auto;
     }
 
+    .nota-syariat {
+      margin-top: 8vw;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      padding: 4vw;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 4vw;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     @media(min-width: 768px) {
       body {
         font-size: 1.2em;
@@ -81,6 +95,10 @@
       .result {
         font-size: 1.1em;
       }
+
+      .nota-syariat {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
@@ -95,6 +113,22 @@
 
   <div class="result" id="keputusan"></div>
   <div class="result" id="unsur"></div>
+
+  <div class="nota-syariat">
+    <strong>Nota Hukum Syariat</strong><br><br>
+    Laman ini dibina untuk tujuan ilmu dan kajian diri berdasarkan kaedah huruf hijaiyyah, ilmu falak dan warisan kitab mujarrobat. Ia membantu mengenal tabiat diri melalui bintang dan unsur (api, air, tanah, angin) berdasarkan nama dan binti ibu.
+    <br><br>
+    <strong>Penegasan Syariat:</strong>
+    <ol style="margin-top: 1em;">
+      <li><strong>Bukan ramalan nasib.</strong> Kaedah ini bukan untuk meramal masa depan, rezeki, jodoh atau takdir hidup.</li>
+      <li><strong>Tiada kuasa pada bintang atau unsur.</strong> Segala yang berlaku adalah dengan izin Allah SWT.</li>
+      <li><strong>Berpandukan warisan ulama.</strong> Kaedah ini diambil dari kitab-kitab hikmah yang diamalkan ulama terdahulu, bukan dari sumber khurafat atau sihir.</li>
+      <li><strong>Sebagai ikhtiar, bukan ketetapan.</strong> Tafsiran bintang dan unsur hanya panduan umum, bukan hukum muktamad.</li>
+      <li><strong>Rujuk ulama jika ragu.</strong> Penggunaan laman ini mestilah dengan niat yang baik dan tidak bercanggah dengan akidah.</li>
+    </ol>
+    <strong>Penafian:</strong><br>
+    Pihak kami tidak bertanggungjawab atas sebarang salah guna atau penyimpangan dari ajaran Islam.
+  </div>
 
   <script>
     const nilaiHuruf = {
@@ -121,57 +155,10 @@
     };
 
     const unsur = {
-      tanah: `
-        <p><strong>Unsur Tanah:</strong></p>
-        <ul style="text-align:left;">
-          <li>Pendiam</li>
-          <li>Pendengar yang baik</li>
-          <li>Penyabar & setia</li>
-          <li>Tak mudah membangkang</li>
-          <li>Dengar kata dan boleh bawa bincang</li>
-          <li>Berperwatakan manis</li>
-          <li>Lembut hati</li>
-          <li>Suka memendam rasa dan sensitif</li>
-          <li>Tak banyak karenah</li>
-          <li>Tak cerewet</li>
-          <li>Menghormati orang lain</li>
-          <li>Rendah diri dan tak sombong</li>
-          <li>Tak suka pendam rasa marah sampai tahap boleh meletup</li>
-          <li>Lambat dalam menyelesaikan satu tugasan</li>
-        </ul>
-      `,
-      air: `
-        <p><strong>Unsur Air:</strong></p>
-        <ul style="text-align:left;">
-          <li>Sentiasa tenang dan menyejukkan perasaan orang lain</li>
-          <li>Buat kerja dengan teratur, teliti dan pantas</li>
-          <li>Keras kepala, sukar dilentur dan dibentuk</li>
-          <li>Manja, lembut hati dan sensitif</li>
-          <li>Mood selalu berubah-ubah</li>
-        </ul>
-      `,
-      api: `
-        <p><strong>Unsur Api:</strong></p>
-        <ul style="text-align:left;">
-          <li>Semangat yang tinggi, sangat aktif dan berkobar-kobar</li>
-          <li>Sangat teliti dan berwaspada</li>
-          <li>Suka menyakat dan mengenakan orang lain</li>
-          <li>Panas baran dan mudah melukakan hati orang lain</li>
-          <li>Kuat cemburu</li>
-          <li>Nampak pendiam + sombong tapi baik hati</li>
-        </ul>
-      `,
-      angin: `
-        <p><strong>Unsur Angin:</strong></p>
-        <ul style="text-align:left;">
-          <li>Melembutkan hati orang lain</li>
-          <li>Agak susah untuk mengendalikan keadaan</li>
-          <li>Tidak suka berkongsi masalah kepada orang lain</li>
-          <li>Pendiam dan pemalu dengan orang yang tak dikenalinya</li>
-          <li>Suka membuat haluan sendiri</li>
-          <li>Penyayang</li>
-        </ul>
-      `
+      tanah: `<p><strong>Unsur Tanah:</strong></p><ul style="text-align:left;"><li>Pendiam</li><li>Pendengar yang baik</li><li>Penyabar & setia</li><li>Tak mudah membangkang</li><li>Dengar kata dan boleh bawa bincang</li><li>Berperwatakan manis</li><li>Lembut hati</li><li>Suka memendam rasa dan sensitif</li><li>Tak banyak karenah</li><li>Tak cerewet</li><li>Menghormati orang lain</li><li>Rendah diri dan tak sombong</li><li>Tak suka pendam rasa marah sampai tahap boleh meletup</li><li>Lambat dalam menyelesaikan satu tugasan</li></ul>`,
+      air: `<p><strong>Unsur Air:</strong></p><ul style="text-align:left;"><li>Sentiasa tenang dan menyejukkan perasaan orang lain</li><li>Buat kerja dengan teratur, teliti dan pantas</li><li>Keras kepala, sukar dilentur dan dibentuk</li><li>Manja, lembut hati dan sensitif</li><li>Mood selalu berubah-ubah</li></ul>`,
+      api: `<p><strong>Unsur Api:</strong></p><ul style="text-align:left;"><li>Semangat yang tinggi, sangat aktif dan berkobar-kobar</li><li>Sangat teliti dan berwaspada</li><li>Suka menyakat dan mengenakan orang lain</li><li>Panas baran dan mudah melukakan hati orang lain</li><li>Kuat cemburu</li><li>Nampak pendiam + sombong tapi baik hati</li></ul>`,
+      angin: `<p><strong>Unsur Angin:</strong></p><ul style="text-align:left;"><li>Melembutkan hati orang lain</li><li>Agak susah untuk mengendalikan keadaan</li><li>Tidak suka berkongsi masalah kepada orang lain</li><li>Pendiam dan pemalu dengan orang yang tak dikenalinya</li><li>Suka membuat haluan sendiri</li><li>Penyayang</li></ul>`
     };
 
     function kiraNilai(nama) {
@@ -222,6 +209,6 @@
   </script>
   <footer style="margin-top: 10vw; text-align: center; font-size: 4vw; color: #8B5E3C; border-top: 1px solid #ccc; padding-top: 3vw;">
     © 2025 Ahmad Rifaie Al Ahmadi Idrisi
-</footer>
+  </footer>
 </body>
 </html>
